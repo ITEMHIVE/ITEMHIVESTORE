@@ -1,7 +1,9 @@
 package za.ac.cput.domain;
 
 import za.ac.cput.util.UtilValidator;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 /*
 Transaction.java
@@ -60,7 +62,7 @@ public class Transaction {
     public int quantity(){
         
         return quantity;
-        
+    }
     public double getPrice() {
 
         return price;
@@ -183,7 +185,7 @@ public class Transaction {
             UtilValidator.requireNotNull(pdate, "pdate");
             UtilValidator.requireNotZero(price, "price");
             UtilValidator.requireNotZero(quantity, "quantity");
-            UtilValidator.requireNotZero(total, "total);
+            UtilValidator.requireNotZero(total, "total");
                 
             return new Transaction(this);
         }
