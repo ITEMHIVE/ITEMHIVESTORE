@@ -9,12 +9,23 @@ Transaction model class
 Author:Athini Ngquke(222352302)
 Date: 15 March 2026
  */
+@Entity
 public class Transaction {
+    @Id
     private String transactionId;
-    private String buyerId;
-    private String sellerId;
-    private String listing;
+    
+    @ManyToOne
+    private Buyer buyerId;
+
+    @ManyToOne
+    private Seller sellerId;
+
+    @ManyToOne
+    private Listing listing;
+    
+    private int quantity;
     private double price;
+    private double total;
     private LocalDate pdate;
 
     public Transaction(Builder builder) {
@@ -22,29 +33,34 @@ public class Transaction {
         this.buyerId = builder.buyerId;
         this.sellerId = builder.sellerId;
         this.listing = builder.listing;
+        this.quantity = builder.quantity;
         this.price = builder.price;
         this.pdate = builder.pdate;
+        this.total = builder.total;
     }
 
     public String getTransactionId() {
         return transactionId;
     }
 
-    public String getBuyerId() {
+    public Buyer getBuyerId() {
 
         return buyerId;
     }
 
-    public String getSellerId() {
+    public Seller getSellerId() {
 
         return sellerId;
     }
 
-    public String getListing() {
+    public Listing getListing() {
 
         return listing;
     }
-
+    public int quantity(){
+        
+        return quantity;
+        
     public double getPrice() {
 
         return price;
@@ -54,20 +70,28 @@ public class Transaction {
 
         return pdate;
     }
-
+     public double getTotal(){
+         return total;
+     }
+    public void calculateTotal(){
+        total = quantity*price;
+    }
+    
     @Override
     public String toString() {
         return"Transaction [transactionId=" + transactionId + ", buyerId=" + buyerId + ", sellerId=" + sellerId
-                + ", listing=" + listing + ", price=" + price + ", pdate=" + pdate + "]";
+                + ", listing=" + listing +", quantity=" + quantity + ", price=" + price + ", pdate=" + pdate +", total=" + total + "]";
     }
 
     public static class Builder {
         private String transactionId;
-        private String buyerId;
-        private String sellerId;
-        private String listing;
+        private Buyer buyerId;
+        private Seller sellerId;
+        private Listing listing;
+        private int quantity;
         private double price;
         private LocalDate pdate;
+        private double total;
 
         /*public Builder(String transactionId, String buyerId, String sellerId, String listing, double price, LocalDate pdate) {
             this.transactionId = transactionId;
@@ -84,25 +108,29 @@ public class Transaction {
             this.transactionId = transactionId;
             return this;
         }
-        public Builder setBuyerId(String buyerId) {
-            if(buyerId == null || buyerId.isEmpty()){
-                throw new IllegalArgumentException("buyerId cannot be null or empty");
+        public Builder setBuyerId(Buyer buyerId) {
+            if(buyerId == null ){
+                throw new IllegalArgumentException("buyerId cannot be null ");
             }
             this.buyerId = buyerId;
             return this;
         }
-        public Builder setSellerId(String sellerId) {
-            if(sellerId == null || sellerId.isEmpty()){
-                throw new IllegalArgumentException("sellerId cannot be null or empty");
+        public Builder setSellerId(Seller sellerId) {
+            if(sellerId == null){
+                throw new IllegalArgumentException("sellerId cannot be null ");
             }
             this.sellerId = sellerId;
             return this;
         }
-        public Builder setListing(String listing) {
-            if(listing == null || listing.isEmpty()){
-                throw new IllegalArgumentException("listing cannot be null or empty");
+        public Builder setListing(Listing listing) {
+            if(listing == null ){
+                throw new IllegalArgumentException("listing cannot be null ");
             }
             this.listing = listing;
+            return this;
+        }
+        public Builder setQuantity(int quantity){
+            this.quantity = quantity;
             return this;
         }
         public Builder setPrice(double price) {
@@ -122,12 +150,16 @@ public class Transaction {
             this.pdate = pdate;
             return this;
         }
-
+        public Builder setTotal(double total){
+            this.total = total;
+            return this;
+        }
         public Builder copy(Transaction trans) {
             this.transactionId = trans.transactionId;
             this.buyerId = trans.buyerId;
             this.sellerId = trans.sellerId;
             this.listing = trans.listing;
+            this.quantity = trans.quantity;
             this.price = trans.price;
             this.pdate = trans.pdate;
             return this;
@@ -150,6 +182,9 @@ public class Transaction {
             UtilValidator.requireNoFutureDate(pdate,"Future date");
             UtilValidator.requireNotNull(pdate, "pdate");
             UtilValidator.requireNotZero(price, "price");
+            UtilValidator.requireNotZero(quantity, "quantity");
+            UtilValidator.requireNotZero(total, "total);
+                
             return new Transaction(this);
         }
 
