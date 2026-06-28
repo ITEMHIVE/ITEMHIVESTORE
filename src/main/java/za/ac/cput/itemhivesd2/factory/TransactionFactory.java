@@ -15,17 +15,17 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class TransactionFactory {
-    public static Transaction createTransaction(String transactionId, String buyerId, String sellerId, String listing, int quantity,double price,double total, LocalDate pdate) {
+    public static Transaction createTransaction(String transactionId, BuyerId buyerId, SellerId sellerId, Listing listing, int quantity,double price,double total, LocalDate pdate) {
         if(Helper.isNullOrEmpty(transactionId)){
             throw new IllegalArgumentException("Id cannot be null");
         }
-        if(Helper.isNullOrEmpty(buyerId)){
+        if(buyerId == null)){
             throw new IllegalArgumentException("Id cannot be null");
         }
-        if(Helper.isNullOrEmpty(sellerId)){
+        if(sellerId == null){
             throw new IllegalArgumentException("Id cannot be null");
         }
-        if(Helper.isNullOrEmpty(listing)){
+        if(listing == null)){
             throw new IllegalArgumentException("Id cannot be null");
         }
         if(quantity<0){
