@@ -1,4 +1,4 @@
-package za.ac.cput.itemhivesd2.factorytest;
+package factory;
 /*Chat Message Factory Test Class
 Kelly Pauline Nolte(218275358)
 Date:25.July.2026*/
