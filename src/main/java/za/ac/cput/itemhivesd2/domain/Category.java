@@ -1,4 +1,4 @@
-package za.ac.cput.domain;
+package za.ac.cput.itemhivesd2.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

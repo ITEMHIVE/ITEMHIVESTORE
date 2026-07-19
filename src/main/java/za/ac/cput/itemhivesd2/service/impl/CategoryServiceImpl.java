@@ -1,10 +1,10 @@
-package za.ac.cput.service.impl;
+package za.ac.cput.itemhivesd2.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.domain.Category;
-import za.ac.cput.repository.CategoryRepository;
-import za.ac.cput.service.ICategoryService;
+import za.ac.cput.itemhivesd2.domain.Category;
+import za.ac.cput.itemhivesd2.repository.CategoryRepository;
+import za.ac.cput.itemhivesd2.service.ICategoryService;
 
 import java.util.List;
 import java.util.Optional;

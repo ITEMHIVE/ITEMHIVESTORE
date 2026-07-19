@@ -1,6 +1,6 @@
-package za.ac.cput.service;
+package za.ac.cput.itemhivesd2.service;
 
-import za.ac.cput.domain.Category;
+import za.ac.cput.itemhivesd2.domain.Category;
 import java.util.List;
 
 // ICategoryService.java

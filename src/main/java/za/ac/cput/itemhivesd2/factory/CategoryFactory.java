@@ -1,6 +1,6 @@
-package za.ac.cput.factory;
+package za.ac.cput.itemhivesd2.factory;
 
-import za.ac.cput.domain.Category;
+import za.ac.cput.itemhivesd2.domain.Category;
 
 // CategoryFactory.java
 // Author: Abongile Phandle (230670849)
